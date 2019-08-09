@@ -1,71 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    android:background="#00f">
 
-
-    <com.sparksoft.cameraandvideo.MSurfaceView
-        android:id="@+id/textureView"
+    <SurfaceView
+        android:id="@+id/sv"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_gravity="center"
-        android:paddingTop="200dp"
-        />
+        android:layout_height="match_parent" />
 
-    <Button
-        android:id="@+id/invalidateBtn"
+    <RelativeLayout
+        android:id="@+id/rl"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="160dp"
-        android:singleLine="true"
-        android:text="Invalidate"
-        />
+        android:layout_height="wrap_content">
 
-    <com.sparksoft.cameraandvideo.MVideoView
-        android:id="@+id/videoView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="40dp"
-        />
-
-    <com.sparksoft.cameraandvideo.MVideoView
-        android:id="@+id/bigvideoView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="20dp"
-        android:visibility="gone"
-        />
-
-    <com.sparksoft.cameraandvideo.MSurfaceView
-        android:id="@+id/surfaceView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="60dp"
-        android:padding="2dp"
-        />
-
-    <Button
-        android:id="@+id/btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="120dp"
-        android:text="Hello"/>
-
-    <Button
-        android:id="@+id/bottomBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|left"
-        android:text="switch surface level"
-        />
-
-    <Button
-        android:id="@+id/bottomRightBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
-        android:text="switch view level"
-        />
-</FrameLayout>
+        <SurfaceView
+            android:id="@+id/sv_mini"
+            android:layout_width="200dp"
+            android:layout_height="200dp" />
+    </RelativeLayout>
+</RelativeLayout>
