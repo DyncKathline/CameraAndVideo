@@ -1,23 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#00f">
-
-    <SurfaceView
-        android:id="@+id/sv"
+    >
+    <com.sparksoft.cameraandvideo.MSurfaceView
+        android:paddingTop="200dp"
+        android:id="@+id/textureView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        />
 
-    <RelativeLayout
-        android:id="@+id/rl"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
 
-        <SurfaceView
-            android:id="@+id/sv_mini"
-            android:layout_width="200dp"
-            android:layout_height="200dp" />
-    </RelativeLayout>
-</RelativeLayout>
+</FrameLayout>

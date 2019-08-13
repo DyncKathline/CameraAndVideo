@@ -72,35 +72,35 @@ public class LiveCameraActivity1 extends Activity implements View.OnClickListene
         local_rl = findViewById(R.id.local_rl);
         local_sv = findViewById(R.id.local_view);
         local_sv.setOnClickListener(this);
-        local_sv.setSurfaceTextureListener(new TextureView.SurfaceTextureListener() {
-            @Override
-            public void onSurfaceTextureAvailable(SurfaceTexture surface, int width, int height) {
-                Canvas c = local_sv.lockCanvas();
-                // 2.开画
-                Paint p = new Paint();
-                p.setColor(Color.GREEN);
-                Rect aa = new Rect(0, 0, local_sv.getWidth(),
-                        local_sv.getHeight());
-                c.drawRect(aa, p);
-                // 3. 解锁画布 更新提交屏幕显示内容
-                local_sv.unlockCanvasAndPost(c);
-            }
-
-            @Override
-            public void onSurfaceTextureSizeChanged(SurfaceTexture surface, int width, int height) {
-                Log.d(TAG, "local_holder surfaceChanged width: " + width + ",height: " + height);
-            }
-
-            @Override
-            public boolean onSurfaceTextureDestroyed(SurfaceTexture surface) {
-                return false;
-            }
-
-            @Override
-            public void onSurfaceTextureUpdated(SurfaceTexture surface) {
-
-            }
-        });
+//        local_sv.setSurfaceTextureListener(new TextureView.SurfaceTextureListener() {
+//            @Override
+//            public void onSurfaceTextureAvailable(SurfaceTexture surface, int width, int height) {
+//                Canvas c = local_sv.lockCanvas();
+//                // 2.开画
+//                Paint p = new Paint();
+//                p.setColor(Color.GREEN);
+//                Rect aa = new Rect(0, 0, local_sv.getWidth(),
+//                        local_sv.getHeight());
+//                c.drawRect(aa, p);
+//                // 3. 解锁画布 更新提交屏幕显示内容
+//                local_sv.unlockCanvasAndPost(c);
+//            }
+//
+//            @Override
+//            public void onSurfaceTextureSizeChanged(SurfaceTexture surface, int width, int height) {
+//                Log.d(TAG, "local_holder surfaceChanged width: " + width + ",height: " + height);
+//            }
+//
+//            @Override
+//            public boolean onSurfaceTextureDestroyed(SurfaceTexture surface) {
+//                return false;
+//            }
+//
+//            @Override
+//            public void onSurfaceTextureUpdated(SurfaceTexture surface) {
+//
+//            }
+//        });
 
         getWindow().getDecorView().post(new Runnable() {
             @Override

@@ -57,7 +57,6 @@ public class LiveCameraActivity extends Activity implements View.OnClickListener
         remote_sv.setOnClickListener(this);
 
         remote_holder = remote_sv.getHolder();
-        // 对 surfaceView 进行操作
         remote_holder.addCallback(new SurfaceHolder.Callback() {
             @Override
             public void surfaceCreated(SurfaceHolder holder) {
@@ -89,32 +88,32 @@ public class LiveCameraActivity extends Activity implements View.OnClickListener
         local_sv.setOnClickListener(this);
         local_sv.setZOrderMediaOverlay(true);
 
-        local_holder = local_sv.getHolder();
-        local_holder.addCallback(new SurfaceHolder.Callback() {
-            @Override
-            public void surfaceCreated(SurfaceHolder holder) {
-                Canvas c = holder.lockCanvas();
-                // 2.开画
-                Paint p = new Paint();
-                p.setColor(Color.GREEN);
-                Rect aa = new Rect(0, 0, holder.getSurfaceFrame().width(),
-                        holder.getSurfaceFrame().height());
-                c.drawRect(aa, p);
-                // 3. 解锁画布 更新提交屏幕显示内容
-                holder.unlockCanvasAndPost(c);
-            }
-
-            @Override
-            public void surfaceChanged(SurfaceHolder holder, int format,
-                                       int width, int height) {
-                Log.d(TAG, "local_holder surfaceChanged width: " + width + ",height: " + height);
-            }
-
-            @Override
-            public void surfaceDestroyed(SurfaceHolder holder) {
-
-            }
-        });
+//        local_holder = local_sv.getHolder();
+//        local_holder.addCallback(new SurfaceHolder.Callback() {
+//            @Override
+//            public void surfaceCreated(SurfaceHolder holder) {
+//                Canvas c = holder.lockCanvas();
+//                // 2.开画
+//                Paint p = new Paint();
+//                p.setColor(Color.GREEN);
+//                Rect aa = new Rect(0, 0, holder.getSurfaceFrame().width(),
+//                        holder.getSurfaceFrame().height());
+//                c.drawRect(aa, p);
+//                // 3. 解锁画布 更新提交屏幕显示内容
+//                holder.unlockCanvasAndPost(c);
+//            }
+//
+//            @Override
+//            public void surfaceChanged(SurfaceHolder holder, int format,
+//                                       int width, int height) {
+//                Log.d(TAG, "local_holder surfaceChanged width: " + width + ",height: " + height);
+//            }
+//
+//            @Override
+//            public void surfaceDestroyed(SurfaceHolder holder) {
+//
+//            }
+//        });
 
         getWindow().getDecorView().post(new Runnable() {
             @Override

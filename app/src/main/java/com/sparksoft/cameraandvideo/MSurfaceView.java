@@ -11,23 +11,25 @@ import java.io.IOException;
 
 public class MSurfaceView extends SurfaceView implements SurfaceHolder.Callback, Camera.PreviewCallback {
 
+    public Camera mCamera;
     public MSurfaceView(Context context) {
         super(context);
+        init();
     }
 
     public MSurfaceView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        init();
     }
 
     public MSurfaceView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        init();
     }
 
-
-    private ICameraViewListener mListener = null;
-
-    protected MSurfaceView init(ICameraViewListener listener) {
-        mListener = listener;
+    protected MSurfaceView init() {
+        mCamera = Camera.open();
+        mCamera.setDisplayOrientation(90);
         SurfaceHolder mSurfaceHolder = getHolder();
         mSurfaceHolder.addCallback(this);
         mSurfaceHolder.setFormat(PixelFormat.TRANSLUCENT);
@@ -46,17 +48,16 @@ public class MSurfaceView extends SurfaceView implements SurfaceHolder.Callback,
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
         Config.logd("MSurface  created.");
-        if (mListener == null) {
-            return;
+        if(mCamera == null) {
+            mCamera = Camera.open();
+            mCamera.setDisplayOrientation(90);
         }
-        Camera camera = mListener.onCameraViewAvailable();
         try {
-            camera.setPreviewCallback(this);
-            camera.setPreviewDisplay(holder);
-            camera.startPreview();
+            mCamera.setPreviewCallback(this);
+            mCamera.setPreviewDisplay(holder);
+            mCamera.startPreview();
         } catch (IOException e) {
             e.printStackTrace();
-            mListener.onCameraViewDestory();
         }
     }
 
@@ -74,18 +75,14 @@ public class MSurfaceView extends SurfaceView implements SurfaceHolder.Callback,
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
         Config.logd("MSurface  surfaceDestroyed：");
-        if (mListener == null) {
-            return;
-        }
-        mListener.onCameraViewDestory();
+        mCamera.setPreviewCallback(null);
+        mCamera.stopPreview();
+        mCamera.release();
+        mCamera = null;
     }
 
     @Override
     public void onPreviewFrame(byte[] data, Camera camera) {
         Config.logd("MSurface  onPreviewFrame ： ");
-        if (mListener == null) {
-            return;
-        }
-        mListener.onPreviewFrame(data);
     }
 }
