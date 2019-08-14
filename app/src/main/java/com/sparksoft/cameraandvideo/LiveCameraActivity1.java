@@ -8,8 +8,6 @@ import android.graphics.Rect;
 import android.graphics.SurfaceTexture;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +21,7 @@ public class LiveCameraActivity1 extends Activity implements View.OnClickListene
     //远端的视图
     private TextureView remote_sv;
     // 本地的视图
-    private TextureView local_sv;
+    private CameraTextureView local_sv;
     private RelativeLayout remote_rl;
     private RelativeLayout local_rl;
 
@@ -112,6 +110,8 @@ public class LiveCameraActivity1 extends Activity implements View.OnClickListene
                 Log.d(TAG, String.format(" sw: %d, sh: %d, bw: %d, bh: %d", localWidth, localHeight, remoteWidth, remoteHeight));
             }
         });
+
+        findViewById(R.id.btn_switch).setOnClickListener(this);
     }
 
     @Override
@@ -131,6 +131,8 @@ public class LiveCameraActivity1 extends Activity implements View.OnClickListene
                     mSate = StateAB;
                 }
                 break;
+            case R.id.btn_switch:
+                local_sv.switchCamera();
             default:
                 break;
         }
@@ -164,10 +166,6 @@ public class LiveCameraActivity1 extends Activity implements View.OnClickListene
         bigSurfaceView.setLayoutParams(bLayoutParams);
         parentView.bringChildToFront(bigView);
 
-        parentView.removeView(smallView);
-        parentView.removeView(bigView);
-        parentView.addView(smallView);
-        parentView.addView(bigView);
         smallView.requestLayout();
         bigView.requestLayout();
         Log.d(TAG, String.format("after sw: %d, sh: %d, bw: %d, bh: %d", smallView.getWidth(), smallView.getHeight(), bigView.getWidth(), bigView.getHeight()));

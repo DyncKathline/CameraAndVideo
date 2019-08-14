@@ -7,14 +7,20 @@ import android.util.Log;
  */
 
 public class Config {
+    private static final String TAG = "Config";
     private static final String domain = "192.168.1.5:8080";
 //    private static final String domain = "10.10.11.101:8080";
     public static final String videoUrl1 = "http://baobab.wdjcdn.com/1457423930928CGI.mp4";
     public static final String videoUrl2 = "http://baobab.wdjcdn.com/1457423930928CGI.mp4";
 
-    public static void logd(String content) {
+    public static void d(String content) {
 
-        Log.d("jiapeng", content);
+        Log.d(TAG, content);
+    }
+
+    public static void e(String content) {
+
+        Log.e(TAG, content);
     }
 
 }

@@ -26,6 +26,6 @@ public class MVideoView extends VideoView {
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-        Config.logd( "MVideoView onAttachedToWindow");
+        Config.d( "MVideoView onAttachedToWindow");
     }
 }

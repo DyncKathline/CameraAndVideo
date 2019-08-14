@@ -1,33 +1,17 @@
 package com.sparksoft.cameraandvideo;
 
 import android.app.Activity;
-import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.PixelFormat;
 import android.graphics.Rect;
-import android.graphics.SurfaceTexture;
-import android.hardware.Camera;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.IBinder;
-import android.os.Message;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowId;
-import android.view.WindowManager;
 import android.widget.RelativeLayout;
-import android.widget.VideoView;
-
-import java.io.IOException;
 
 /**
  * TextureView 和 SurfaceView
@@ -37,7 +21,7 @@ public class LiveCameraActivity extends Activity implements View.OnClickListener
     //远端的视图
     private SurfaceView remote_sv;
     // 本地的视图
-    private SurfaceView local_sv;
+    private CameraSurfaceView local_sv;
     private SurfaceHolder remote_holder;
     private SurfaceHolder local_holder;
     private RelativeLayout remote_rl;
@@ -88,32 +72,7 @@ public class LiveCameraActivity extends Activity implements View.OnClickListener
         local_sv.setOnClickListener(this);
         local_sv.setZOrderMediaOverlay(true);
 
-//        local_holder = local_sv.getHolder();
-//        local_holder.addCallback(new SurfaceHolder.Callback() {
-//            @Override
-//            public void surfaceCreated(SurfaceHolder holder) {
-//                Canvas c = holder.lockCanvas();
-//                // 2.开画
-//                Paint p = new Paint();
-//                p.setColor(Color.GREEN);
-//                Rect aa = new Rect(0, 0, holder.getSurfaceFrame().width(),
-//                        holder.getSurfaceFrame().height());
-//                c.drawRect(aa, p);
-//                // 3. 解锁画布 更新提交屏幕显示内容
-//                holder.unlockCanvasAndPost(c);
-//            }
-//
-//            @Override
-//            public void surfaceChanged(SurfaceHolder holder, int format,
-//                                       int width, int height) {
-//                Log.d(TAG, "local_holder surfaceChanged width: " + width + ",height: " + height);
-//            }
-//
-//            @Override
-//            public void surfaceDestroyed(SurfaceHolder holder) {
-//
-//            }
-//        });
+        findViewById(R.id.btn_switch).setOnClickListener(this);
 
         getWindow().getDecorView().post(new Runnable() {
             @Override
@@ -144,6 +103,8 @@ public class LiveCameraActivity extends Activity implements View.OnClickListener
                     mSate = StateAB;
                 }
                 break;
+            case R.id.btn_switch:
+                local_sv.switchCamera();
             default:
                 break;
         }
